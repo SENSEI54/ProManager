@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Sign_in_Activity"
+    android:orientation="vertical"
+    android:background="@drawable/normal_backgorund"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_sign_in_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/Sign_in_toolbar_text_size"
+            android:gravity="center_vertical"
+            android:text="@string/sign_in_btn"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/ll_signup_margintop"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/enter_details_margin_top"
+            android:text="@string/Enter_your_details"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/SecondaryTextColor"
+            android:textSize="@dimen/Enter_your_detail_size"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/cardview_margin_start"
+            android:layout_marginTop="@dimen/cardview_margin_top"
+            android:layout_marginEnd="@dimen/cardview_margin_end"
+            android:elevation="@dimen/cardview_elevation"
+            app:cardCornerRadius="@dimen/cardCornerRadius"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/cardview_layout_content_padding"
+                >
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tv_email_margintop"
+                    android:layout_marginStart="@dimen/tv_email_marginstart"
+                    android:layout_marginEnd="@dimen/tv_email_marginEnd"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_signin_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="@string/Email"
+                        android:inputType="textEmailAddress"
+                        android:textSize="16sp"
+                        tools:text="Jacob" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/tv_password_margintop"
+                    android:layout_marginStart="@dimen/tv_password_marginstart"
+                    android:layout_marginEnd="@dimen/tv_password_marginEnd"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_signin_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="@string/Password"
+                        android:inputType="textPassword"
+                        android:textSize="16sp"
+                        tools:text="jacob" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <android.widget.Button
+                    android:id="@+id/signin_sign_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in_btn"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/gradientbutton"
+                    android:layout_marginStart="@dimen/signin_margin_start"
+                    android:layout_marginEnd="@dimen/signin_margin_end"
+                    android:layout_marginTop="@dimen/signin_margin_top"
+                    />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>

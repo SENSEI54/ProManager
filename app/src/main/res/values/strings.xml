@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Pro Manager</string>
+    <string name="appintro">A Project Managing Application</string>
+    <string name="intro_iv_description">task  perfoming</string>
+    <string name="lets_go">Let\'s Go</string>
+    <string name="app_des">Collaborate and Plan Together Across Multiple Devices and Pro Manager\'s Minimalist interface </string>
+    <string name="sign_in_btn">Sign-in</string>
+    <string name="sign_up_btn">Sign-Up</string>
+    <string name="Enter_your_details">Enter Your Details Here</string>
+    <string name="Name">Name</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="please_click_back_again_to_exit">Please Click Back Again To Exit</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="nav_my_profile">My Profile</string>
+    <string name="nav_sign_out">Sign Out</string>
+    <string name="image_contentDescription">image Content Desciption</string>
+    <string name="update">Update</string>
+    <string name="mobile">Mobile</string>
+    <string name="my_profile">My Profile</string>
+    <string name="Create_Board">Create Board</string>
+    <string name="Create_Board_btn">CREATE</string>
+    <string name="BoardName">Board Name</string>
+    <string name="no_boards_are_available">No boards are available!</string>
+    <string name="task_details">Task Details</string>
+    <string name="action_add_list">Add List</string>
+    <string name="hint_list_name">List Name</string>
+    <string name="hint_card_name">Card Name</string>
+    <string name="action_add_card">Add Card</string>
+    <string name="add_list">Add List</string>
+    <string name="members">Members</string>
+    <string name="add_member">Add Member</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="searchMember">Search Member</string>
+</resources>
