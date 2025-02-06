@@ -5,20 +5,26 @@ import android.os.Parcelable
 
 data class Card (
     val name: String = "",
-    val createdby: String = "",
-    val AssignedTo: ArrayList<String> = ArrayList()
+    val createdBy: String = "",
+    val assignedTo: ArrayList<String> = ArrayList(),
+    var labelColor:String="",
+    val dueDate:Long=0
 ):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.createStringArrayList()!!
+        parcel.createStringArrayList()!!,
+        parcel.readString()!!,
+        parcel.readLong()!!
     ) {
     }
 
     override fun writeToParcel(dest: Parcel, flags: Int)=with(dest) {
         dest.writeString(name)
-        dest.writeString(createdby)
-        dest.writeStringList(AssignedTo)
+        dest.writeString(createdBy)
+        dest.writeStringList(assignedTo)
+        dest.writeString(labelColor)
+        dest.writeLong(dueDate)
     }
 
     override fun describeContents() = 0

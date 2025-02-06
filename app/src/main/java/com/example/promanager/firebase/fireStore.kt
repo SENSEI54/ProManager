@@ -81,16 +81,30 @@ class fireStore {
                 Log.e(activity.javaClass.simpleName,"Cant load the data",e)
             }
     }
-    fun addUpdateTaskList(activity: TaskActivity,board:Board){
-        val TaskListHashMap=HashMap<String,Any>()
-        TaskListHashMap[Constants.TASK_LIST] = board.taskList
+    fun addUpdateTaskList(activity: Activity,board:Board){
+        val taskListHashMap = HashMap<String, Any>()
+        taskListHashMap[Constants.TASK_LIST] = board.taskList
 
-        mFireStore.collection(Constants.Boards).document(board.documentID).update(TaskListHashMap).addOnSuccessListener {
-            Log.i(activity.javaClass.simpleName,"TaskListUpdation was succesdfull")
-            activity.addUpdateBoardTaskList()
-        }.addOnFailureListener{
-            e->Log.e(activity.javaClass.simpleName,"Error Occurred",e)
-        }
+        mFireStore.collection(Constants.Boards)
+            .document(board.documentID)
+            .update(taskListHashMap)
+            .addOnSuccessListener {
+                Log.e(activity.javaClass.simpleName, "TaskList updated successfully.")
+
+                if (activity is TaskActivity) {
+                    activity.addUpdateTaskListSuccess()
+                } else if (activity is CardDetailsActivity) {
+                    activity.addUpdateTaskListSuccess()
+                }
+            }
+            .addOnFailureListener { e ->
+                if (activity is TaskActivity) {
+                    activity.hideProgressDialog()
+                } else if (activity is CardDetailsActivity) {
+                    activity.hideProgressDialog()
+                }
+                Log.e(activity.javaClass.simpleName, "Error while creating a board.", e)
+            }
     }
 
     fun loadUserData(activity:Activity, readBoardList: Boolean = false)
@@ -146,6 +160,44 @@ class fireStore {
         return currentUserId
     }
 
+    fun getAssignedMembersListDetails(activity: Activity, assignedTo: ArrayList<String>) {
+
+        mFireStore.collection(Constants.Users) // Collection Name
+            .whereIn(
+                Constants.ID,
+                assignedTo
+            ) // Here the database field name and the id's of the members.
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e(activity.javaClass.simpleName, document.documents.toString())
+
+                val usersList: ArrayList<User> = ArrayList()
+
+                for (i in document.documents) {
+                    val user = i.toObject(User::class.java)!!
+                    usersList.add(user)
+                }
+
+                if (activity is MembersActivity) {
+                    activity.setupMembersList(usersList)
+                } else if (activity is TaskActivity) {
+                    activity.boardMembersDetailList(usersList)
+                }
+            }
+            .addOnFailureListener { e ->
+                if (activity is MembersActivity) {
+                    activity.hideProgressDialog()
+                } else if (activity is TaskActivity) {
+                    activity.hideProgressDialog()
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while creating a board.",
+                    e
+                )
+            }
+    }
+
     fun getMemberList(activity: MembersActivity,assignedTo: ArrayList<String>){
         mFireStore.collection(Constants.Users).whereIn(Constants.ID,assignedTo).get().addOnSuccessListener {
             document->
@@ -181,5 +233,23 @@ class fireStore {
             activity.hideProgressDialog()
             Log.e(activity.javaClass.simpleName,"Error while fetching",)
         }
+    }
+
+    fun assignMemberToBoard(activity: MembersActivity, board: Board, user: User) {
+
+        val assignedToHashMap = HashMap<String, Any>()
+        assignedToHashMap[Constants.ASSIGNED_TO] = board.assignedTo
+
+        mFireStore.collection(Constants.Boards)
+            .document(board.documentID)
+            .update(assignedToHashMap)
+            .addOnSuccessListener {
+                Log.e(activity.javaClass.simpleName, "TaskList updated successfully.")
+                activity.memberAssignSuccess(user)
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while creating a board.", e)
+            }
     }
 }

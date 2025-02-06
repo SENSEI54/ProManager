@@ -21,7 +21,15 @@ object Constants {
     const val DOCUMENT_ID:String="documentID"
     const val TASK_LIST:String="taskList"
     const val BOARD_DETAIL:String = "board_detail"
-    const val EMAIL:String="Email"
+    const val EMAIL:String="email"
+
+    const val TASK_LIST_ITEM_POSITION: String = "task_list_item_position"
+    const val CARD_LIST_ITEM_POSITION: String = "card_list_item_position"
+
+    const val BOARD_MEMBERS_LIST: String = "board_members_list"
+
+    const val SELECT: String = "Select"
+    const val UN_SELECT: String = "UnSelect"
 
     fun showImagePicker(activity: Activity){
         val galleryIntent= Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
